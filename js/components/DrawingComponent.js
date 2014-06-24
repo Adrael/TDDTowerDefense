@@ -6,4 +6,6 @@ function DrawingComponent() {
 	Component.call(this);
 	this.TID = 'DrawingComponent';
 
+    return this;
+
 };

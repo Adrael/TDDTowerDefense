@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>RP.JS &mdash; Tower Defense</title>
+		<title>TDDTowerDefense</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		
 		<!--[if lt IE 9]>
@@ -10,18 +10,40 @@
 
 	</head>
 	<body>
-		<h1 class="text-center threedee">RP.JS &mdash; Tower Defense</h1>
+		<h1 class="text-center threedee">TDDTowerDefense</h1>
 		<canvas id="canvas"></canvas>
 
-		<script type="text/javascript" src="js/world.js"></script>
-		<script type="text/javascript" src="js/agent.js"></script>
+        <!-- GAME -->
+            <script src="js/game/Data.js"></script>
+        <!-- /GAME -->
 
-		<script type="text/javascript" src="js/game.js"></script>
+        <!-- CORE -->
+            <script src="js/core/World.js"></script>
+            <script src="js/core/Entity.js"></script>
+            <script src="js/core/Component.js"></script>
+            <script src="js/core/EntityProcessingComponent.js"></script>
+        <!-- /CORE -->
 
-		<script type="text/javascript">
+        <!-- COMPONENTS -->
+            <script src="js/components/DeadEntityComponent.js"></script>
+            <script src="js/components/PositionComponent.js"></script>
+            <script src="js/components/DrawingComponent.js"></script>
+            <script src="js/components/DrawingMapComponent.js"></script>
+            <script src="js/components/SizeComponent.js"></script>
+        <!-- /COMPONENTS -->
 
-			var game = new Game();
-			
-		</script>
+        <!-- SYSTEMS -->
+            <script src="js/systems/DeadEntitySystem.js"></script>
+            <script src="js/systems/DrawingMapSystem.js"></script>
+        <!-- /SYSTEMS -->
+
+        <!-- FACTORIES -->
+            <script src="js/factories/EntityFactory.js"></script>
+        <!-- /FACTORIES -->
+
+        <!-- GAME -->
+            <script src="js/game/TDDTowerDefense.js"></script>
+        <!-- /GAME -->
+
 	</body>
 </html>

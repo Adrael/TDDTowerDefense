@@ -12,7 +12,7 @@ function DrawingSystem() {
 
 DrawingSystem.prototype.processEntity = function(entity) {
 
-    var positionComponent = entity.getComponent('PositionComponent');
+    var positionComponent = entity.getComponent('SizeComponent');
     
     if(positionComponent !== null) {
         context.fillStyle = 'red';

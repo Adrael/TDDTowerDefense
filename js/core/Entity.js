@@ -71,10 +71,31 @@ Entity.prototype.getComponents = function() {
 
 Entity.prototype.getComponent = function(component) {
 	for(var i in this.components) {
+
 		if(this.components[i].getTypeIdentifier() === component) {
+
 			return this.components[i];
+
 		}
+
 	}
 
 	return null;
+};
+
+Entity.prototype.removeComponent = function (component) {
+
+    for(var i = 0; i < this.components.length; ++i) {
+
+        if(this.components[i].getTypeIdentifier() === component) {
+
+            this.components.slice(i, 1);
+            break;
+
+        }
+
+    }
+
+    return this;
+
 };

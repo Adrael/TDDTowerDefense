@@ -1,6 +1,6 @@
 module('EntityFactory');
 
-/* ------------------------------------------------------- */
+/* ----------------------------------------- */
 
 test('can create a foe', function () {
 
@@ -8,10 +8,20 @@ test('can create a foe', function () {
 
 });
 
-/* ------------------------------------------------------- */
+/* ----------------------------------------- */
 
 test('can create a tower', function () {
 
-	ok(EntityFactory.createTower() !== null, 'EntityFactory creates towers.');
+    ok(EntityFactory.createTower() !== null, 'EntityFactory creates towers.');
 
 });
+
+/* ----------------------------------------- */
+
+test('can create a map', function () {
+
+    ok(EntityFactory.createMap() !== null, 'EntityFactory creates maps.');
+
+});
+
+/* ----------------------------------------- */

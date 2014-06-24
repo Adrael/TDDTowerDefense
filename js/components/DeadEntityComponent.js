@@ -6,4 +6,6 @@ function DeadEntityComponent() {
 	Component.call(this);
 	this.TID = 'DeadEntityComponent';
 
+    return this;
+
 };

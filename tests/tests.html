@@ -2,31 +2,47 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>RP.JS &mdash; Tests</title>
+		<title>TDDTowerDefense &mdash; Tests</title>
 		<link rel="stylesheet" href="libs/qunit/css/qunit-theme-ninja.css">
 	</head>
 	<body>
 		<div id="qunit"></div>
 		<div id="qunit-fixture"></div>
 
-		<script src="libs/jquery/jquery.min.js"></script>
-		<script src="libs/qunit/js/qunit.js"></script>
+        <!-- LIBRARIES -->
+            <script src="libs/jquery/jquery.min.js"></script>
+            <script src="libs/qunit/js/qunit.js"></script>
+        <!-- /LIBRARIES -->
 
-		<script src="../js/core/World.js"></script>
-		<script src="../js/core/Entity.js"></script>
-		<script src="../js/core/Component.js"></script>
-		<script src="../js/core/EntityProcessingComponent.js"></script>
+        <!-- CORE -->
+            <script src="../js/core/World.js"></script>
+            <script src="../js/core/Entity.js"></script>
+            <script src="../js/core/Component.js"></script>
+            <script src="../js/core/EntityProcessingComponent.js"></script>
+        <!-- /CORE -->
 
-		<script src="../js/components/DeadEntityComponent.js"></script>
-		<script src="../js/components/PositionComponent.js"></script>
-		<script src="../js/components/DrawingComponent.js"></script>
+        <!-- COMPONENTS -->
+            <script src="../js/components/DeadEntityComponent.js"></script>
+            <script src="../js/components/PositionComponent.js"></script>
+            <script src="../js/components/DrawingComponent.js"></script>
+            <script src="../js/components/DrawingMapComponent.js"></script>
+            <script src="../js/components/SizeComponent.js"></script>
+        <!-- /COMPONENTS -->
 
-		<script src="../js/systems/DeadEntitySystem.js"></script>
+        <!-- SYSTEMS -->
+		    <script src="../js/systems/DeadEntitySystem.js"></script>
+        <!-- /SYSTEMS -->
 
-		<script src="../js/factories/EntityFactory.js"></script>
+        <!-- FACTORIES -->
+		    <script src="../js/factories/EntityFactory.js"></script>
+        <!-- /FACTORIES -->
 
-		<script src="core/_World.js"></script>
-		<script src="core/_Entity.js"></script>
-		<script src="core/_EntityFactory.js"></script>
+        <!-- TESTS -->
+            <script src="core/_World.js"></script>
+            <script src="core/_Entity.js"></script>
+            <script src="core/_EntityFactory.js"></script>
+            <script src="entities/_Map.js"></script>
+        <!-- /TESTS -->
+
 	</body>
 </html>

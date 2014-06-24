@@ -12,35 +12,51 @@ function DrawingMapSystem() {
 
 DrawingMapSystem.prototype.processEntity = function(entity) {
 
-    var canvas = entity.getCanvas();
+    console.log('Drawing Map');
 
-    if(canvas) {
+    var drawingMapComponent = entity.getComponent('DrawingMapComponent');
+    if(drawingMapComponent !== null) {
+        var canvas = drawingMapComponent.getCanvas();
 
-        var size = entity.getSize();
+        if(canvas !== null) {
 
-        canvas.width  = this.width;
-        canvas.height = this.height;
+            var sizeComponent = entity.getComponent('SizeComponent');
+            if(sizeComponent !== null) {
 
-        canvas.style.marginLeft = '-' + this.width / 2 + 'px';
-        canvas.style.marginTop = '-' + this.height / 2 + 'px';
-        
-    }
+                var size = sizeComponent.getSize();
 
-	// get size, cell et context du world
-	
-	for(var i = 0; i < size; i += cell) {
+                canvas.width  = size.width;
+                canvas.height = size.height;
 
-        // vertical lines
-        context.beginPath();
-        context.moveTo(i, 0);
-        context.lineTo(i, size);
-        context.stroke();
+                canvas.style.marginLeft = '-' + size.width / 2 + 'px';
+                canvas.style.marginTop = '-' + size.height / 2 + 'px';
 
-        // horizontal lines
-        context.beginPath();
-        context.moveTo(0, i);
-        context.lineTo(size, i);
-        context.stroke();
+                var context = canvas.getContext('2d');
+                context.strokeStyle = '#ffffff';
+
+                // vertical lines
+                for(var i = 0; i < size.width - ((3/4) * (size.width - size.height)); i += Data.CELL_SIZE) {
+
+                    context.beginPath();
+                    context.moveTo(i, 0);
+                    context.lineTo(i, size.width);
+                    context.stroke();
+
+                }
+
+                // horizontal lines
+                for(var i = 0; i < size.height; i += Data.CELL_SIZE) {
+
+                    context.beginPath();
+                    context.moveTo(0, i);
+                    context.lineTo(size.height, i);
+                    context.stroke();
+
+                }
+
+            }
+
+        }
 
     }
 

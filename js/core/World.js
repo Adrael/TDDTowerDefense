@@ -70,16 +70,13 @@ World.prototype.start = function () {
 		clearInterval(this.refreshLoop);
 	}
 
+    var self = this;
 	this.refreshLoop = setInterval(
-		(
-			
-			function (self) {
+		function () {
 
-				self.process();
+            self.process();
 
-			}
-
-		)(this), 1000 / this.FPS); 
+        }, 1000 / this.FPS);
 
 	return this;
 
