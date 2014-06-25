@@ -41,20 +41,17 @@ MouseClickSystem.prototype.processEvent = function (event) {
         var tower = EntityFactory.createTower(position.x, position.y);
         tower.addToWorld(this.world);
 
-        var bullet = EntityFactory.createBullet(new PositionComponent(x, y), new AimingComponent(new PositionComponent(0, 0)));
-        bullet.addToWorld(this.world);
+        var self = this;
+        setInterval(
 
-//        var self = this;
-//        setInterval(
-//
-//            function () {
-//
-//                var bullet = EntityFactory.createBullet(new PositionComponent(x, y), new AimingComponent(new PositionComponent(0, 0)));
-//                bullet.addToWorld(self.world);
-//
-//            }
-//
-//        , 1000);
+            function () {
+
+                var bullet = EntityFactory.createBullet(new PositionComponent(position.x + (Data.CELL_SIZE / 2), position.y + (Data.CELL_SIZE / 2)), new AimingComponent(new PositionComponent(0, 0)));
+                bullet.addToWorld(self.world);
+
+            }
+
+        , 1000);
 
     }
 
