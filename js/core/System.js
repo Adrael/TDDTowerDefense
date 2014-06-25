@@ -75,11 +75,6 @@ System.prototype.parseEntities = function (entities) {
         }
     }
 
-//    if(this instanceof MovingBulletSystem) {
-//        console.log('mbsel', this.entities.length)
-//        console.log('mbsal', this.aspects.length)
-//    }
-
     return this;
 };
 
@@ -124,6 +119,12 @@ System.prototype.setEntities = function(entities) {
 
     this.entities = entities;
     return this;
+
+};
+
+System.prototype.getEntities = function() {
+
+    return this.entities;
 
 };
 
