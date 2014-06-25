@@ -12,8 +12,8 @@ function Entity () {
 Entity.prototype.addToWorld = function (world) {
 
 	this.world = world;
-	this.world.setEntity(this);
 	this.setIdentifier(this.world.getUniqueIdentifier());
+    this.world.setEntity(this);
 
 	return this;
 

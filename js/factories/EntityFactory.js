@@ -13,7 +13,7 @@ var EntityFactory =
 				var tower = new Entity();
 				tower.setTypeIdentifier('Tower');
 				tower.addComponent(new PositionComponent(x, y));
-				tower.addComponent(new DrawingComponent());
+				tower.addComponent(new DrawComponent());
 
 				return tower;
 
@@ -26,7 +26,7 @@ var EntityFactory =
 				var foe = new Entity();
 				foe.setTypeIdentifier('Foe');
                 foe.addComponent(new PositionComponent(x, y));
-                foe.addComponent(new DrawingComponent());
+                foe.addComponent(new DrawComponent());
 
 				return foe;
 
@@ -34,7 +34,7 @@ var EntityFactory =
 
             /* ----------------------------------------- */
 
-            createMap: function (size, canvas, tileset) {
+            createMap: function (size) {
 
                 if(size === undefined) {
 
@@ -47,7 +47,6 @@ var EntityFactory =
 
                 var map = new Entity();
                 map.setTypeIdentifier('Map');
-                map.addComponent(new DrawingMapComponent(canvas, tileset));
                 map.addComponent(new SizeComponent(size.width, size.height));
                 map.addComponent(new MouseClickComponent());
 

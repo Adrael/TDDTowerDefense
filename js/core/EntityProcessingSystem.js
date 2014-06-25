@@ -1,6 +1,6 @@
-function EntityProcessingComponent () {
+function EntityProcessingSystem () {
 
-	this.TID = 'EntityProcessingComponent';
+	this.TID = 'EntityProcessingSystem';
 
 	this.entities = [];
 	this.aspects = [];
@@ -9,29 +9,29 @@ function EntityProcessingComponent () {
 
 }
 
-EntityProcessingComponent.prototype.setTypeIdentifier = function(TID) {
+EntityProcessingSystem.prototype.setTypeIdentifier = function(TID) {
 	
 	this.TID = TID;
 	return this;
 
 };
 
-EntityProcessingComponent.prototype.workOn = function(aspects) {
+EntityProcessingSystem.prototype.workOn = function(aspects) {
 	
 	this.aspects = aspects;
 	return this;
 
 };
 
-EntityProcessingComponent.prototype.exclude = function(excludedAspects) {
+EntityProcessingSystem.prototype.exclude = function(excludedAspects) {
 	
 	this.excludedAspects = excludedAspects;
 	return this;
 
 };
 
-EntityProcessingComponent.prototype.parseEntities = function (entities) {
-    //console.log('parseEntities')
+EntityProcessingSystem.prototype.parseEntities = function (entities) {
+
     this.entities = [];
 
     if (this.aspects.length === 0) {
@@ -46,7 +46,7 @@ EntityProcessingComponent.prototype.parseEntities = function (entities) {
             var isValidEntity = true;
 
             for (var j in this.aspects) {
-                if (!this.entityContainsComponent(entityComponents, this.aspects[i])) {
+                if (!this.entityContainsComponent(entityComponents, this.aspects[j])) {
                     isValidEntity = false;
                     break;
                 }
@@ -71,7 +71,7 @@ EntityProcessingComponent.prototype.parseEntities = function (entities) {
     return this;
 };
 
-EntityProcessingComponent.prototype.processEntities = function (entities) {
+EntityProcessingSystem.prototype.processEntities = function (entities) {
 
     this.parseEntities(entities);
     this.process();
@@ -82,7 +82,7 @@ EntityProcessingComponent.prototype.processEntities = function (entities) {
 
 
 
-EntityProcessingComponent.prototype.processEventEntities = function (entities, event) {
+EntityProcessingSystem.prototype.processEventEntities = function (entities, event) {
 
     this.parseEntities(entities);
     this.processEvent(event);
@@ -90,13 +90,13 @@ EntityProcessingComponent.prototype.processEventEntities = function (entities, e
 
 };
 
-EntityProcessingComponent.prototype.processEvent = function (event) {
+EntityProcessingSystem.prototype.processEvent = function (event) {
 
     return this;
 
 };
 
-EntityProcessingComponent.prototype.entityContainsComponent = function(entityComponents, component) {
+EntityProcessingSystem.prototype.entityContainsComponent = function(entityComponents, component) {
 	
 	for(var i in entityComponents) {
 		if(entityComponents[i].getTypeIdentifier() === component) {
@@ -108,15 +108,15 @@ EntityProcessingComponent.prototype.entityContainsComponent = function(entityCom
 
 };
 
-EntityProcessingComponent.prototype.setEntities = function(entities) {
+EntityProcessingSystem.prototype.setEntities = function(entities) {
 	
 	this.entities = entities;
 	return this;
 
 };
 
-EntityProcessingComponent.prototype.process = function() {
-	
+EntityProcessingSystem.prototype.process = function() {
+
 	for(var i in this.entities) {
 
 		this.processEntity(this.entities[i]);
@@ -127,7 +127,7 @@ EntityProcessingComponent.prototype.process = function() {
 
 };
 
-EntityProcessingComponent.prototype.processEntity = function(entity) {
+EntityProcessingSystem.prototype.processEntity = function(entity) {
 	
 	return this;
 

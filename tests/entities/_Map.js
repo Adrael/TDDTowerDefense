@@ -43,21 +43,3 @@ test('must have a size', function () {
 });
 
 /* ----------------------------------------- */
-
-test('must have a canvas', function () {
-
-    var drawingMapComponent = map.getComponent('DrawingMapComponent');
-    var validDrawingMapComponent = (drawingMapComponent !== null);
-
-    ok(validDrawingMapComponent, 'Map has a valid DrawingMapComponent.');
-
-    if(validDrawingMapComponent) {
-        var canvas = document.createElement('canvas');
-        drawingMapComponent.setCanvas(canvas);
-
-        ok(drawingMapComponent.getCanvas() !== null, 'Map does have a canvas.');
-    }
-
-});
-
-/* ----------------------------------------- */

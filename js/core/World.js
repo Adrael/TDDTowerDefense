@@ -112,9 +112,7 @@ World.prototype.process = function () {
 
 };
 
-World.prototype.processEvent = function (event) {
-
-    console.log('event received', event.type)
+World.prototype.processEvent = function (world, event) {
 
     for(var i in this.systems) {
 

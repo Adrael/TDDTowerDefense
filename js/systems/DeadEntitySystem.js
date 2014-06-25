@@ -1,4 +1,4 @@
-DeadEntitySystem.prototype = new EntityProcessingComponent();
+DeadEntitySystem.prototype = new EntityProcessingSystem();
 DeadEntitySystem.prototype.constructor = DeadEntitySystem;
 
 function DeadEntitySystem() {

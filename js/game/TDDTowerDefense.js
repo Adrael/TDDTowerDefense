@@ -15,16 +15,27 @@ var TDDTowerDefense =
             initialize: function () {
 
                 world = new World();
-                world.setFPS(1);
-                world.setSystem(new DrawingMapSystem());
-                world.setSystem(new MouseClickSystem());
 
                 var mapSize = {width: 800, height: 600};
                 var canvas = document.getElementById('canvas');
-                canvas.addEventListener('click', world.processEvent, false);
+
+                var clickEventListener =
+                function (event) {
+
+                    world.processEvent(world, event);
+
+                };
+
+                //canvas.addEventListener('click', world.processEvent, false);
+                canvas.addEventListener('click', clickEventListener, false);
 
                 map = EntityFactory.createMap(mapSize, canvas);
-                map.addToWorld(world);
+                //map.addToWorld(world);
+
+                world.setFPS(24);
+                world.setSystem(new DrawMapSystem(map, canvas));
+                world.setSystem(new DrawSystem(canvas));
+                world.setSystem(new MouseClickSystem(world, canvas));
 
                 return this;
 
