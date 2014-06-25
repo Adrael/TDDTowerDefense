@@ -30,35 +30,69 @@ EntityProcessingComponent.prototype.exclude = function(excludedAspects) {
 
 };
 
-EntityProcessingComponent.prototype.checkEntities = function(entities) {
-	
-	for(var i in entities) {
-		var entityComponents = entities[i].getComponents();
-		var isValidEntity = true;
+EntityProcessingComponent.prototype.parseEntities = function (entities) {
+    //console.log('parseEntities')
+    this.entities = [];
 
-		for(var j in this.aspects) {
-			if(!this.entityContainsComponent(entityComponents, this.aspects[i])) {
-				isValidEntity = false;
-				break;
-			}
-		}
+    if (this.aspects.length === 0) {
 
-		if(isValidEntity) {
+        this.entities = entities;
 
-			for(var k in this.excludedAspects) {
-				if(this.entityContainsComponent(entityComponents, this.excludedAspects[k])) {
-					isValidEntity = false;
-					break;
-				}
-			}
+    } else {
 
-			if(isValidEntity) {
-				this.entities.push(entities[i]);
-			}
-		}
-	}
+        for (var i in entities) {
+
+            var entityComponents = entities[i].getComponents();
+            var isValidEntity = true;
+
+            for (var j in this.aspects) {
+                if (!this.entityContainsComponent(entityComponents, this.aspects[i])) {
+                    isValidEntity = false;
+                    break;
+                }
+            }
+
+            if (isValidEntity) {
+
+                for (var k in this.excludedAspects) {
+                    if (this.entityContainsComponent(entityComponents, this.excludedAspects[k])) {
+                        isValidEntity = false;
+                        break;
+                    }
+                }
+
+                if (isValidEntity) {
+                    this.entities.push(entities[i]);
+                }
+            }
+        }
+    }
+
+    return this;
+};
+
+EntityProcessingComponent.prototype.processEntities = function (entities) {
+
+    this.parseEntities(entities);
+    this.process();
 
 	return this;
+
+};
+
+
+
+EntityProcessingComponent.prototype.processEventEntities = function (entities, event) {
+
+    this.parseEntities(entities);
+    this.processEvent(event);
+    return this;
+
+};
+
+EntityProcessingComponent.prototype.processEvent = function (event) {
+
+    return this;
 
 };
 

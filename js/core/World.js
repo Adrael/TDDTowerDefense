@@ -100,12 +100,11 @@ World.prototype.restart = function () {
 
 };
 
-World.prototype.process = function() {
+World.prototype.process = function () {
 
 	for(var i in this.systems) {
 
-		this.systems[i].setEntities(this.entities);
-		this.systems[i].process();
+		this.systems[i].processEntities(this.entities);
 
 	}
 
@@ -113,8 +112,22 @@ World.prototype.process = function() {
 
 };
 
+World.prototype.processEvent = function (event) {
+
+    console.log('event received', event.type)
+
+    for(var i in this.systems) {
+
+        this.systems[i].processEventEntities(this.entities, event);
+
+    }
+
+    return this;
+
+};
+
 World.prototype.getUniqueIdentifier = function () {
 
-	return ++this.entityCounter;
+    return ++this.entityCounter;
 
 };

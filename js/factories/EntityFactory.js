@@ -21,10 +21,12 @@ var EntityFactory =
 
             /* ----------------------------------------- */
 
-            createFoe: function () {
+            createFoe: function (x, y) {
 
 				var foe = new Entity();
 				foe.setTypeIdentifier('Foe');
+                foe.addComponent(new PositionComponent(x, y));
+                foe.addComponent(new DrawingComponent());
 
 				return foe;
 
@@ -47,6 +49,7 @@ var EntityFactory =
                 map.setTypeIdentifier('Map');
                 map.addComponent(new DrawingMapComponent(canvas, tileset));
                 map.addComponent(new SizeComponent(size.width, size.height));
+                map.addComponent(new MouseClickComponent());
 
                 return map;
 

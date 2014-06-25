@@ -11,7 +11,9 @@
 	</head>
 	<body>
 		<h1 class="text-center threedee">TDDTowerDefense</h1>
-		<canvas id="canvas"></canvas>
+		<canvas id="canvas">
+            Your browser dosen't support the HTML5 canvas.
+		</canvas>
 
         <!-- GAME -->
             <script src="js/game/Data.js"></script>
@@ -30,11 +32,13 @@
             <script src="js/components/DrawingComponent.js"></script>
             <script src="js/components/DrawingMapComponent.js"></script>
             <script src="js/components/SizeComponent.js"></script>
+            <script src="js/components/MouseClickComponent.js"></script>
         <!-- /COMPONENTS -->
 
         <!-- SYSTEMS -->
             <script src="js/systems/DeadEntitySystem.js"></script>
             <script src="js/systems/DrawingMapSystem.js"></script>
+            <script src="js/systems/MouseClickSystem.js"></script>
         <!-- /SYSTEMS -->
 
         <!-- FACTORIES -->

@@ -12,7 +12,7 @@ function DrawingMapSystem() {
 
 DrawingMapSystem.prototype.processEntity = function(entity) {
 
-    console.log('Drawing Map');
+    //console.log('Drawing Map');
 
     var drawingMapComponent = entity.getComponent('DrawingMapComponent');
     if(drawingMapComponent !== null) {
