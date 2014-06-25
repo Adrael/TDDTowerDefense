@@ -3,7 +3,7 @@ DrawingSystem.prototype.constructor = DrawingSystem;
 
 function DrawingSystem() {
 
-	Component.call(this);
+    EntityProcessingSystem.call(this);
 	this.TID = 'DrawingSystem';
 
 	this.workOn(['DrawComponent']);

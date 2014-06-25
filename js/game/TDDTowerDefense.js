@@ -34,8 +34,12 @@ var TDDTowerDefense =
 
                 world.setFPS(24);
                 world.setSystem(new DrawMapSystem(map, canvas));
-                world.setSystem(new DrawSystem(canvas));
+                world.setSystem(new DrawTowerSystem(canvas));
+                world.setSystem(new DrawBulletSystem(canvas));
                 world.setSystem(new MouseClickSystem(world, canvas));
+                world.setSystem(new TimeToLiveSystem());
+                world.setSystem(new DeadEntitySystem());
+                world.setSystem(new MovingBulletSystem(world));
 
                 return this;
 

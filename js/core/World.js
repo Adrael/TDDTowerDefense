@@ -20,8 +20,19 @@ World.prototype.reset = function () {
 
 	this.canvas = null;
 	this.context = null;
+
+    this.delta = 0;
+    this.deltaDate = null;
+
+    this.started = false;
 	
 	return this;
+
+};
+
+World.prototype.isStarted = function () {
+
+    return this.started;
 
 };
 
@@ -66,6 +77,8 @@ World.prototype.setFPS = function (fps) {
 
 World.prototype.start = function () {
 
+    this.started = true;
+
 	if(this.refreshLoop) {
 		clearInterval(this.refreshLoop);
 	}
@@ -76,7 +89,10 @@ World.prototype.start = function () {
 
             self.process();
 
-        }, 1000 / this.FPS);
+        },
+    1000 / this.FPS);
+
+    this.deltaDate = new Date();
 
 	return this;
 
@@ -100,9 +116,30 @@ World.prototype.restart = function () {
 
 };
 
+World.prototype.getDelta = function () {
+
+    return this.delta;
+
+};
+
 World.prototype.process = function () {
 
+    if(this.started) {
+
+        var newDeltaDate = new Date();
+        this.delta = Math.abs(newDeltaDate.getTime() - this.deltaDate.getTime());
+        this.deltaDate = newDeltaDate;
+
+    }
+
 	for(var i in this.systems) {
+
+        if(this.systems[i] instanceof DelayedEntityProcessingSystem) {
+
+            this.systems[i].processDelayedBefore(this.entities, this.delta);
+            continue;
+
+        }
 
 		this.systems[i].processEntities(this.entities);
 

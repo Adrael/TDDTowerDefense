@@ -3,7 +3,7 @@ DrawMapSystem.prototype.constructor = DrawMapSystem;
 
 function DrawMapSystem(map, canvas) {
 
-	Component.call(this);
+    VoidProcessingSystem.call(this);
 	this.TID = 'DrawMapSystem';
 
     this.setMap(map);
