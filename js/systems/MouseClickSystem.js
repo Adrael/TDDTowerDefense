@@ -38,20 +38,23 @@ MouseClickSystem.prototype.processEvent = function (event) {
 
         var position = this.getSnappedPositionAt(x, y);
 
-        var tower = EntityFactory.createTower(position.x, position.y);
-        tower.addToWorld(this.world);
+        if(position.x < this.canvas.width * Data.MAP_COEFFICIENT_SIZE) {
 
-//        var self = this;
-//        setInterval(
-//
-//            function () {
-//
-//                var bullet = EntityFactory.createBullet(new PositionComponent(position.x + (Data.CELL_SIZE / 2), position.y + (Data.CELL_SIZE / 2)), new AimingComponent(new PositionComponent(0, 0)));
-//                bullet.addToWorld(self.world);
-//
-//            }
-//
-//        , 1000);
+            var tower = EntityFactory.createTower(position.x, position.y);
+            tower.addToWorld(this.world);
+
+            var perception = tower.getComponent('PerceptionComponent');
+            var perceptionRadius = 100;
+            if (perception !== null) {
+
+                perceptionRadius = perception.getRadius();
+
+            }
+
+            var towerPerception = EntityFactory.createPerception(tower, perceptionRadius);
+            towerPerception.addToWorld(this.world);
+
+        }
 
     }
 

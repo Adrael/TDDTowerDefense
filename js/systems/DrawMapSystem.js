@@ -44,7 +44,7 @@ DrawMapSystem.prototype.process = function() {
             context.strokeStyle = '#ffffff';
 
             // vertical lines
-            for(var i = 0; i < size.width - ((3/4) * (size.width - size.height)); i += Data.CELL_SIZE) {
+            for(var i = 0; i < size.width - (Data.MAP_COEFFICIENT_SIZE * (size.width - size.height)); i += Data.CELL_SIZE) {
 
                 context.beginPath();
                 context.moveTo(i, 0);

@@ -89,7 +89,7 @@ Entity.prototype.removeComponent = function (component) {
 
         if(this.components[i].getTypeIdentifier() === component) {
 
-            this.components.slice(i, 1);
+            this.components.splice(i, 1);
             break;
 
         }

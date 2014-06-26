@@ -22,6 +22,17 @@ SpawnFoeSystem.prototype.process = function() {
         foe.addToWorld(this.world);
         this.world.addFoe(foe);
 
+        var perception = foe.getComponent('PerceptionComponent');
+        var perceptionRadius = 100;
+        if (perception !== null) {
+
+            perceptionRadius = perception.getRadius();
+
+        }
+
+        var foePerception = EntityFactory.createPerception(foe, perceptionRadius);
+        foePerception.addToWorld(this.world);
+
         this.currentDelay = this.delay;
 
     }

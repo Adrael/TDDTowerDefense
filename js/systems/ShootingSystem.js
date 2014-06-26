@@ -59,7 +59,9 @@ ShootingSystem.prototype.processExpired = function (entity) {
     var firingRateComponent = entity.getComponent('FiringRateComponent');
     if(positionComponent !== null && aimingComponent !== null && firingRateComponent !== null) {
 
-        var bullet = EntityFactory.createBullet(positionComponent, aimingComponent);
+        var bulletPositionComponent = new PositionComponent(positionComponent.getX() + Data.CELL_SIZE / 2, positionComponent.getY() + Data.CELL_SIZE / 2);
+
+        var bullet = EntityFactory.createBullet(bulletPositionComponent, aimingComponent);
         bullet.addToWorld(this.world);
 
         firingRateComponent.resetDelay();

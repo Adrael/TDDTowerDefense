@@ -1,10 +1,10 @@
-MovingBulletSystem.prototype = new EntityProcessingSystem();
-MovingBulletSystem.prototype.constructor = MovingBulletSystem;
+MovingSystem.prototype = new EntityProcessingSystem();
+MovingSystem.prototype.constructor = MovingSystem;
 
-function MovingBulletSystem(world) {
+function MovingSystem(world) {
 
     EntityProcessingSystem.call(this);
-    this.TID = 'MovingBulletSystem';
+    this.TID = 'MovingSystem';
 
     this.workOn(['VelocityComponent', 'PositionComponent', 'SpeedComponent']);
 
@@ -12,7 +12,7 @@ function MovingBulletSystem(world) {
 
 };
 
-MovingBulletSystem.prototype.processEntity = function(entity) {
+MovingSystem.prototype.processEntity = function(entity) {
 
     var speed    = entity.getComponent('SpeedComponent');
     var position = entity.getComponent('PositionComponent');

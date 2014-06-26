@@ -9,7 +9,7 @@ module('World',
                   
                   setup: function () {
 
-                    world = new World();
+                    world = new TDDTowerDefenseWorld();
                     entity = new Entity();
 
                   },

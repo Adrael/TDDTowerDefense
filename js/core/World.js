@@ -50,6 +50,53 @@ World.prototype.setEntity = function (entity) {
 
 };
 
+World.prototype.getEntitiesWithComponent = function (component) {
+
+    var entitiesWithComponent = [];
+    for(var i in this.entities) {
+
+        if(this.entities[i].getComponent(component)) {
+
+            entitiesWithComponent.push(this.entities[i]);
+
+        }
+
+    }
+
+    return entitiesWithComponent;
+
+};
+
+World.prototype.getEntitiesWithComponents = function (components) {
+
+    var entitiesWithComponents = [],
+        isValid = true;
+    for(var i in this.entities) {
+
+        isValid = true;
+        for(var j in components) {
+
+            if(this.entities[i].getComponent(components[j]) === null) {
+
+                isValid = false;
+                break;
+
+            }
+
+        }
+
+        if(isValid) {
+
+            entitiesWithComponents.push(this.entities[i]);
+
+        }
+
+    }
+
+    return entitiesWithComponents;
+
+};
+
 World.prototype.getEntities = function () {
 
 	return this.entities;

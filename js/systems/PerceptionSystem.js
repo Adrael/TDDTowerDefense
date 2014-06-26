@@ -6,7 +6,7 @@ function PerceptionSystem(world) {
     EntityProcessingSystem.call(this);
     this.TID = 'PerceptionSystem';
 
-    this.workOn(['PerceptionComponent', 'PositionComponent']);
+    this.workOn(['ReferrerComponent', 'PositionComponent', 'CircleCollisionComponent']);
 
     this.setWorld(world);
 
@@ -21,33 +21,38 @@ PerceptionSystem.prototype.setWorld = function (world) {
 
 PerceptionSystem.prototype.processEntity = function(entity) {
 
-    var foes = this.world.getFoes();
+    var entities = this.world.getEntitiesWithComponent('CircleCollisionComponent');
+    var circleCollisionComponentA = entity.getComponent('CircleCollisionComponent');
+    var referrerComponentA = entity.getComponent('ReferrerComponent').getReferrer();
 
-    var perceptionComponent = entity.getComponent('PerceptionComponent');
-    var positionComponent = entity.getComponent('PositionComponent');
+    referrerComponentA.removeComponent('AimingComponent');
 
-    if(perceptionComponent !== null && positionComponent !== null) {
+    for(var i in entities) {
 
-        entity.removeComponent('AimingComponent');
+        var referrerComponentB = entities[i].getComponent('ReferrerComponent');
+        if(referrerComponentB === null) {
 
-        for (var i in foes) {
-
-            var foePositionComponent = foes[i].getComponent('PositionComponent');
-            var deltaX = Math.abs(foePositionComponent.getRealPositionX() - positionComponent.getRealPositionX());
-            var deltaY = Math.abs(foePositionComponent.getRealPositionY() - positionComponent.getRealPositionY());
-
-//            console.log(deltaX, deltaY)
-//            console.log(deltaX * deltaX + deltaY * deltaY, perceptionComponent.getRadius() * perceptionComponent.getRadius())
-
-            if (deltaX * deltaX + deltaY * deltaY < perceptionComponent.getRadius() * perceptionComponent.getRadius()) {
-
-                entity.addComponent(new AimingComponent(foePositionComponent))
-                console.log('adding aiming')
-
-            }
+            continue;
 
         }
 
+        referrerComponentB = referrerComponentB.getReferrer();
+
+        var circleCollisionComponentB = entities[i].getComponent('CircleCollisionComponent');
+
+        if((circleCollisionComponentA === circleCollisionComponentB) || (referrerComponentB.getTypeIdentifier() === 'Tower' && referrerComponentA.getTypeIdentifier() === 'Tower')) {
+
+            continue;
+
+        }
+
+        if(circleCollisionComponentA.intersects(circleCollisionComponentB) && referrerComponentA.getTypeIdentifier() === 'Tower') {
+
+            var referrerPositionComponent = referrerComponentB.getComponent('PositionComponent');
+            var positionComponent = new PositionComponent(referrerPositionComponent.getX(), referrerPositionComponent.getY());
+            referrerComponentA.addComponent(new AimingComponent(positionComponent));
+
+        }
     }
 
     return this;

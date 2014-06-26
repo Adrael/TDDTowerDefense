@@ -26,22 +26,20 @@ var TDDTowerDefense =
 
                 };
 
-                //canvas.addEventListener('click', world.processEvent, false);
                 canvas.addEventListener('click', clickEventListener, false);
 
                 map = EntityFactory.createMap(mapSize, canvas);
-                //map.addToWorld(world);
 
                 world.setFPS(120);
                 world.setSystem(new DrawMapSystem(map, canvas));
-                world.setSystem(new DrawTowerSystem(canvas));
-                world.setSystem(new DrawBulletSystem(canvas));
                 world.setSystem(new DrawFoeSystem(canvas));
+                world.setSystem(new DrawBulletSystem(canvas));
+                world.setSystem(new DrawTowerSystem(canvas));
                 world.setSystem(new MouseClickSystem(world, canvas));
                 world.setSystem(new TimeToLiveSystem());
                 world.setSystem(new DeadEntitySystem());
-                world.setSystem(new MovingBulletSystem(world));
-                world.setSystem(new SpawnFoeSystem(world, 3000));
+                world.setSystem(new MovingSystem(world));
+                world.setSystem(new SpawnFoeSystem(world, 3500));
                 world.setSystem(new PerceptionSystem(world));
                 world.setSystem(new ShootingSystem(world));
 

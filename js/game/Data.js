@@ -7,7 +7,8 @@ var Data =
 
         return {
 
-            CELL_SIZE: 50
+            CELL_SIZE: 50,
+            MAP_COEFFICIENT_SIZE: 3/4
 
         };
 
