@@ -15,6 +15,8 @@ var EntityFactory =
 				tower.addComponent(new PositionComponent(x, y));
 				tower.addComponent(new DrawTowerComponent(255, 255, 0, 1));
                 tower.addComponent(new SizeComponent(Data.CELL_SIZE, Data.CELL_SIZE));
+                tower.addComponent(new FiringRateComponent(600));
+                tower.addComponent(new PerceptionComponent(200));
 
                 return tower;
 
@@ -22,12 +24,21 @@ var EntityFactory =
 
             /* ----------------------------------------- */
 
-            createFoe: function (x, y) {
+            createFoe: function (position, aiming) {
 
 				var foe = new Entity();
 				foe.setTypeIdentifier('Foe');
-                foe.addComponent(new PositionComponent(x, y));
                 foe.addComponent(new DrawComponent(0, 0, 128, 1));
+                foe.addComponent(new SizeComponent(Data.CELL_SIZE / 2, Data.CELL_SIZE / 2));
+                foe.addComponent(new DrawFoeComponent(0, 128, 128, 1));
+
+                var positionComponent = new PositionComponent(position.getX(), position.getY());
+                positionComponent.setOrigin(position);
+
+                foe.addComponent(positionComponent);
+                foe.addComponent(new SpeedComponent(300));
+                foe.addComponent(new TimeToLiveComponent(5000));
+                foe.addComponent(new VelocityComponent(positionComponent, aiming.getPosition()));
 
 				return foe;
 
@@ -53,7 +64,7 @@ var EntityFactory =
 
                 bullet.addComponent(positionComponent);
                 bullet.addComponent(new DrawBulletComponent(255, 0, 0, 1));
-                bullet.addComponent(new SizeComponent(Data.CELL_SIZE / 5, Data.CELL_SIZE / 5));
+                bullet.addComponent(new SizeComponent(Data.CELL_SIZE / 10, Data.CELL_SIZE / 10));
 
 //                bullet.addComponent(new BulletPowerComponent(10));
                 bullet.addComponent(new SpeedComponent(750));

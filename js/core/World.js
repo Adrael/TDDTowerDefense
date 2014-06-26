@@ -137,11 +137,20 @@ World.prototype.process = function () {
         if(this.systems[i] instanceof DelayedEntityProcessingSystem) {
 
             this.systems[i].processDelayedBefore(this.entities, this.delta);
-            continue;
 
         }
 
-		this.systems[i].processEntities(this.entities);
+        else if(this.systems[i] instanceof VoidEntitySystem) {
+
+            this.systems[i].process();
+
+        }
+
+        else {
+
+            this.systems[i].processEntities(this.entities);
+
+        }
 
 	}
 
@@ -152,6 +161,13 @@ World.prototype.process = function () {
 World.prototype.processEvent = function (world, event) {
 
     for(var i in this.systems) {
+
+        if(this.systems[i] instanceof VoidEntitySystem) {
+
+            this.systems[i].processEvent(event);
+            continue;
+
+        }
 
         this.systems[i].processEventEntities(this.entities, event);
 

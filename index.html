@@ -25,7 +25,7 @@
             <script src="js/core/Component.js"></script>
             <script src="js/core/System.js"></script>
             <script src="js/core/EntityProcessingSystem.js"></script>
-            <script src="js/core/VoidProcessingSystem.js"></script>
+            <script src="js/core/VoidEntitySystem.js"></script>
             <script src="js/core/DelayedEntityProcessingSystem.js"></script>
         <!-- /CORE -->
 
@@ -34,6 +34,7 @@
             <script src="js/components/PositionComponent.js"></script>
             <script src="js/components/DrawComponent.js"></script>
             <script src="js/components/DrawTowerComponent.js"></script>
+            <script src="js/components/DrawFoeComponent.js"></script>
             <script src="js/components/SizeComponent.js"></script>
             <script src="js/components/MouseClickComponent.js"></script>
             <script src="js/components/TimeToLiveComponent.js"></script>
@@ -41,16 +42,22 @@
             <script src="js/components/AimingComponent.js"></script>
             <script src="js/components/SpeedComponent.js"></script>
             <script src="js/components/DrawBulletComponent.js"></script>
+            <script src="js/components/FiringRateComponent.js"></script>
+            <script src="js/components/PerceptionComponent.js"></script>
         <!-- /COMPONENTS -->
 
         <!-- SYSTEMS -->
             <script src="js/systems/DeadEntitySystem.js"></script>
             <script src="js/systems/DrawTowerSystem.js"></script>
             <script src="js/systems/DrawBulletSystem.js"></script>
+            <script src="js/systems/DrawFoeSystem.js"></script>
             <script src="js/systems/DrawMapSystem.js"></script>
             <script src="js/systems/MouseClickSystem.js"></script>
             <script src="js/systems/TimeToLiveSystem.js"></script>
             <script src="js/systems/MovingBulletSystem.js"></script>
+            <script src="js/systems/SpawnFoeSystem.js"></script>
+            <script src="js/systems/ShootingSystem.js"></script>
+            <script src="js/systems/PerceptionSystem.js"></script>
         <!-- /SYSTEMS -->
 
         <!-- FACTORIES -->
@@ -58,6 +65,7 @@
         <!-- /FACTORIES -->
 
         <!-- GAME -->
+            <script src="js/game/TDDTowerDefenseWorld.js"></script>
             <script src="js/game/TDDTowerDefense.js"></script>
         <!-- /GAME -->
 

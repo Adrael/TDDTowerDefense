@@ -15,6 +15,7 @@ DeadEntitySystem.prototype.processEntity = function(entity) {
     var world = entity.getWorld();
     if(world) {
 
+        world.removeFoe(entity);
     	world.removeEntity(entity);
 
     }

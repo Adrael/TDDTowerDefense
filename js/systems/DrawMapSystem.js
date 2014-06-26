@@ -1,9 +1,9 @@
-DrawMapSystem.prototype = new VoidProcessingSystem();
+DrawMapSystem.prototype = new VoidEntitySystem();
 DrawMapSystem.prototype.constructor = DrawMapSystem;
 
 function DrawMapSystem(map, canvas) {
 
-    VoidProcessingSystem.call(this);
+    VoidEntitySystem.call(this);
 	this.TID = 'DrawMapSystem';
 
     this.setMap(map);
@@ -25,7 +25,7 @@ DrawMapSystem.prototype.setCanvas = function (canvas) {
 
 };
 
-DrawMapSystem.prototype.processEntity = function() {
+DrawMapSystem.prototype.process = function() {
 
     if(this.canvas !== null && this.canvas !== undefined) {
 

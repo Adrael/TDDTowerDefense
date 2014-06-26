@@ -14,7 +14,7 @@ var TDDTowerDefense =
 
             initialize: function () {
 
-                world = new World();
+                world = new TDDTowerDefenseWorld();
 
                 var mapSize = {width: 800, height: 600};
                 var canvas = document.getElementById('canvas');
@@ -32,14 +32,18 @@ var TDDTowerDefense =
                 map = EntityFactory.createMap(mapSize, canvas);
                 //map.addToWorld(world);
 
-                world.setFPS(24);
+                world.setFPS(120);
                 world.setSystem(new DrawMapSystem(map, canvas));
                 world.setSystem(new DrawTowerSystem(canvas));
                 world.setSystem(new DrawBulletSystem(canvas));
+                world.setSystem(new DrawFoeSystem(canvas));
                 world.setSystem(new MouseClickSystem(world, canvas));
                 world.setSystem(new TimeToLiveSystem());
                 world.setSystem(new DeadEntitySystem());
                 world.setSystem(new MovingBulletSystem(world));
+                world.setSystem(new SpawnFoeSystem(world, 3000));
+                world.setSystem(new PerceptionSystem(world));
+                world.setSystem(new ShootingSystem(world));
 
                 return this;
 

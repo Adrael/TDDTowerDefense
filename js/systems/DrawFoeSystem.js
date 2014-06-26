@@ -1,24 +1,24 @@
-DrawBulletSystem.prototype = new EntityProcessingSystem();
-DrawBulletSystem.prototype.constructor = DrawBulletSystem;
+DrawFoeSystem.prototype = new EntityProcessingSystem();
+DrawFoeSystem.prototype.constructor = DrawFoeSystem;
 
-function DrawBulletSystem(canvas) {
+function DrawFoeSystem(canvas) {
 
     EntityProcessingSystem.call(this);
-    this.TID = 'DrawBulletSystem';
+    this.TID = 'DrawFoeSystem';
 
-    this.workOn(['DrawBulletComponent']);
+    this.workOn(['DrawFoeComponent']);
     this.setCanvas(canvas);
 
 };
 
-DrawBulletSystem.prototype.setCanvas = function(canvas) {
+DrawFoeSystem.prototype.setCanvas = function(canvas) {
 
     this.canvas = canvas;
     return this;
 
 };
 
-DrawBulletSystem.prototype.processEntity = function(entity) {
+DrawFoeSystem.prototype.processEntity = function(entity) {
 
     if(this.canvas !== null && this.canvas !== undefined) {
 
@@ -28,12 +28,12 @@ DrawBulletSystem.prototype.processEntity = function(entity) {
             var position = positionComponent.getPosition();
 
             var context = this.canvas.getContext('2d');
-            var drawBulletComponent = entity.getComponent('DrawBulletComponent');
+            var drawFoeComponent = entity.getComponent('DrawFoeComponent');
             var color = '#FFFFFF';
 
-            if(drawBulletComponent !== null) {
+            if(drawFoeComponent !== null) {
 
-                color = drawBulletComponent.getColorAsString();
+                color = drawFoeComponent.getColorAsString();
 
             }
 

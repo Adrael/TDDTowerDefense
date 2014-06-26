@@ -4,7 +4,7 @@ module('EntityFactory');
 
 test('can create a foe', function () {
 
-	ok(EntityFactory.createFoe() !== null, 'EntityFactory creates foes.');
+	ok(EntityFactory.createFoe(new PositionComponent(0, 0), new AimingComponent(new PositionComponent(0, 0))) !== null, 'EntityFactory creates foes.');
 
 });
 
