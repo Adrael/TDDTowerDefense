@@ -1,7 +1,7 @@
 MouseClickSystem.prototype = new EntityProcessingSystem();
 MouseClickSystem.prototype.constructor = MouseClickSystem;
 
-function MouseClickSystem(world, canvas) {
+function MouseClickSystem(world, canvas, map) {
 
     EntityProcessingSystem.call(this);
     this.TID = 'MouseClickSystem';
@@ -9,12 +9,22 @@ function MouseClickSystem(world, canvas) {
     this.workOn(['MouseClickComponent']);
     this.setWorld(world);
     this.setCanvas(canvas);
+    this.setMap(map);
+
+    this.grid = {x: [], y: []};
 
 };
 
 MouseClickSystem.prototype.setCanvas = function (canvas) {
 
     this.canvas = canvas;
+    return this;
+
+};
+
+MouseClickSystem.prototype.setMap = function (map) {
+
+    this.map = map;
     return this;
 
 };
@@ -38,7 +48,7 @@ MouseClickSystem.prototype.processEvent = function (event) {
 
         var position = this.getSnappedPositionAt(x, y);
 
-        if(position.x < this.canvas.width * Data.MAP_COEFFICIENT_SIZE) {
+        if(this.isCellAvailable(position) && this.isValidCell(position)) {
 
             var tower = EntityFactory.createTower(position.x, position.y);
             tower.addToWorld(this.world);
@@ -53,6 +63,8 @@ MouseClickSystem.prototype.processEvent = function (event) {
 
             var towerPerception = EntityFactory.createPerception(tower, perceptionRadius);
             towerPerception.addToWorld(this.world);
+
+            this.grid[position.x + position.y] = 1;
 
         }
 
@@ -80,5 +92,19 @@ MouseClickSystem.prototype.getColumnIndexAt = function (positionX) {
 MouseClickSystem.prototype.getRowIndexAt = function (positionY) {
 
     return Math.round(positionY / Data.CELL_SIZE) * Data.CELL_SIZE;
+
+};
+
+MouseClickSystem.prototype.isCellAvailable = function (position) {
+
+    var cell = this.grid.x[position.x] + this.grid.y[position.y];
+
+    return cell < 2 || isNaN(cell);
+
+};
+
+MouseClickSystem.prototype.isValidCell = function (position) {
+
+    return position.x < (this.canvas.width * Data.MAP_COEFFICIENT_SIZE);
 
 };

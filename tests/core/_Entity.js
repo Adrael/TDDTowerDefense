@@ -35,14 +35,25 @@ test( 'can take part of a World',
 /* ----------------------------------------- */
 
 test( 'can have a component',
-  function () {
+    function () {
 
-    entity.addComponent(new DeadEntityComponent());
+        entity.addComponent(new Component());
 
-    ok( entity.getComponents().length > 0 ,'Entity has component.' );
-    ok( entity.getComponent('DeadEntityComponent') !== null ,'Entity retrieves component.' );
-  
-  }
+        ok( entity.getComponents().length > 0 ,'Entity has component.' );
+
+    }
+);
+
+/* ----------------------------------------- */
+
+test( 'can retrieve a component',
+    function () {
+
+        entity.addComponent(new Component());
+
+        ok( entity.getComponent('Component') !== null , 'Entity retrieves component.' );
+
+    }
 );
 
 /* ----------------------------------------- */

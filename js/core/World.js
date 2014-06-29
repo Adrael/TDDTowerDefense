@@ -156,7 +156,7 @@ World.prototype.pause = function () {
 
 };
 
-World.prototype.restart = function () {
+World.prototype.play = function () {
 
 	this.start();
 	return this;

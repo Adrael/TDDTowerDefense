@@ -15,8 +15,8 @@ var EntityFactory =
 				tower.addComponent(new PositionComponent(x, y));
 				tower.addComponent(new DrawTowerComponent(255, 255, 0, 1));
                 tower.addComponent(new SizeComponent(Data.CELL_SIZE, Data.CELL_SIZE));
-                tower.addComponent(new FiringRateComponent(600));
-                tower.addComponent(new PerceptionComponent(100));
+                tower.addComponent(new FiringRateComponent(200));
+                tower.addComponent(new PerceptionComponent(150));
 
                 return tower;
 
@@ -28,7 +28,7 @@ var EntityFactory =
 
                 var perception = new Entity();
                 perception.setTypeIdentifier('Perception');
-                perception.addComponent(new DrawFoeComponent(244, 164, 96, 0.1));
+                perception.addComponent(new DrawDebugComponent(244, 164, 96, 0.1));
                 perception.addComponent(new SizeComponent(radius, radius));
                 perception.addComponent(new ReferrerComponent(entity));
 
@@ -55,7 +55,7 @@ var EntityFactory =
 
                 var positionComponent = null;
                 var entityPositionComponent = entity.getComponent('PositionComponent');
-                if(entityPositionComponent !== null && entityTimeToLiveComponent !== null && entitySpeedComponent !== null && entityVelocityComponent !== null) {
+                if(entityPositionComponent !== null && entitySpeedComponent !== null && entityVelocityComponent !== null) {
 
                     positionComponent = new PositionComponent(entityPositionComponent.getX(), entityPositionComponent.getY());
                     positionComponent.setOrigin(entityPositionComponent);
@@ -93,14 +93,15 @@ var EntityFactory =
 				foe.setTypeIdentifier('Foe');
                 foe.addComponent(new SizeComponent(Data.CELL_SIZE / 2, Data.CELL_SIZE / 2));
                 foe.addComponent(new DrawFoeComponent(0, 128, 128, 1));
-                foe.addComponent(new PerceptionComponent(50));
+                foe.addComponent(new PerceptionComponent(Data.CELL_SIZE / 2));
 
                 var positionComponent = new PositionComponent(position.getX(), position.getY());
                 positionComponent.setOrigin(position);
 
                 foe.addComponent(positionComponent);
+                foe.addComponent(new LifeComponent(200));
                 foe.addComponent(new SpeedComponent(100));
-//                foe.addComponent(new TimeToLiveComponent(3000));
+                foe.addComponent(new TimeToLiveComponent(10000));
                 foe.addComponent(new VelocityComponent(positionComponent, aiming.getPosition()));
 
 				return foe;
@@ -128,8 +129,9 @@ var EntityFactory =
                 bullet.addComponent(positionComponent);
                 bullet.addComponent(new DrawBulletComponent(255, 0, 0, 1));
                 bullet.addComponent(new SizeComponent(Data.CELL_SIZE / 10, Data.CELL_SIZE / 10));
+                bullet.addComponent(new PerceptionComponent(Data.CELL_SIZE / 10));
 
-//                bullet.addComponent(new BulletPowerComponent(10));
+                bullet.addComponent(new BulletPowerComponent(10));
                 bullet.addComponent(new SpeedComponent(750));
                 bullet.addComponent(new TimeToLiveComponent(2000));
                 bullet.addComponent(new VelocityComponent(positionComponent, aiming.getPosition()));

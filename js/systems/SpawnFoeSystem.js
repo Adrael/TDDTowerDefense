@@ -18,7 +18,7 @@ SpawnFoeSystem.prototype.process = function() {
     this.currentDelay -= this.world.getDelta();
     if(this.currentDelay <= 0) {
 
-        var foe = EntityFactory.createFoe(new PositionComponent(0, 600), new AimingComponent(new PositionComponent(600, 0)));
+        var foe = EntityFactory.createFoe(new PositionComponent(0, 0), new AimingComponent(new PositionComponent(600, 600)));
         foe.addToWorld(this.world);
         this.world.addFoe(foe);
 

@@ -25,3 +25,11 @@ test('can create a map', function () {
 });
 
 /* ----------------------------------------- */
+
+test('can create a perception', function () {
+
+    ok(EntityFactory.createPerception(new Entity(), 0) !== null, 'EntityFactory creates perceptions.');
+
+});
+
+/* ----------------------------------------- */

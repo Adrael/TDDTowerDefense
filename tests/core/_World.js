@@ -106,7 +106,7 @@ test( 'can process entity',
     
     world.process();
 
-    equal( world.getEntities().length, 0, 'World resets.' );
+    equal( world.getEntities().length, 0, 'World can process an entity.' );
   
   }
 );

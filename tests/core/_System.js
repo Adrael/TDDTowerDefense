@@ -25,10 +25,10 @@ module('System',
 test( 'can receive an entity',
     function () {
 
-        system.workOn(['PositionComponent']);
+        system.workOn(['Component']);
 
         var entity = new Entity();
-        entity.addComponent(new PositionComponent(0, 0));
+        entity.addComponent(new Component());
 
         var world = new World();
         world.setSystem(system);

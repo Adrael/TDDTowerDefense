@@ -44,7 +44,7 @@ ShootingSystem.prototype.processDelta = function (entity, delay) {
     if(firingRateComponent !== null) {
 
         var delta = firingRateComponent.getActualDelay() - delay;
-        firingRateComponent.setDelay(delta);
+        firingRateComponent.setActualDelay(delta);
 
     }
 
@@ -59,10 +59,21 @@ ShootingSystem.prototype.processExpired = function (entity) {
     var firingRateComponent = entity.getComponent('FiringRateComponent');
     if(positionComponent !== null && aimingComponent !== null && firingRateComponent !== null) {
 
-        var bulletPositionComponent = new PositionComponent(positionComponent.getX() + Data.CELL_SIZE / 2, positionComponent.getY() + Data.CELL_SIZE / 2);
+        var bulletPositionComponent = new PositionComponent(positionComponent.getRealPositionX() + Data.CELL_SIZE / 2, positionComponent.getRealPositionY() + Data.CELL_SIZE / 2);
 
         var bullet = EntityFactory.createBullet(bulletPositionComponent, aimingComponent);
         bullet.addToWorld(this.world);
+
+        var perception = bullet.getComponent('PerceptionComponent');
+        var perceptionRadius = 100;
+        if (perception !== null) {
+
+            perceptionRadius = perception.getRadius();
+
+        }
+
+        var bulletPerception = EntityFactory.createPerception(bullet, perceptionRadius);
+        bulletPerception.addToWorld(this.world);
 
         firingRateComponent.resetDelay();
 

@@ -6,6 +6,14 @@ function DrawComponent(red, green, blue, alpha) {
 	Component.call(this);
 	this.TID = 'DrawComponent';
 
+    this.setColor(red, green, blue, alpha);
+
+    return this;
+
+};
+
+DrawComponent.prototype.setColor = function (red, green, blue, alpha) {
+
     this.setRed(red);
     this.setGreen(green);
     this.setBlue(blue);

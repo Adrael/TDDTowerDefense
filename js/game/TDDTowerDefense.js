@@ -30,17 +30,22 @@ var TDDTowerDefense =
 
                 map = EntityFactory.createMap(mapSize, canvas);
 
-                world.setFPS(120);
+                world.setFPS(24);
                 world.setSystem(new DrawMapSystem(map, canvas));
+
+//                world.setSystem(new DrawDebugSystem(canvas));
+
                 world.setSystem(new DrawFoeSystem(canvas));
                 world.setSystem(new DrawBulletSystem(canvas));
                 world.setSystem(new DrawTowerSystem(canvas));
+                world.setSystem(new DrawLifeSystem(canvas));
                 world.setSystem(new MouseClickSystem(world, canvas));
                 world.setSystem(new TimeToLiveSystem());
                 world.setSystem(new DeadEntitySystem());
                 world.setSystem(new MovingSystem(world));
                 world.setSystem(new SpawnFoeSystem(world, 3500));
                 world.setSystem(new PerceptionSystem(world));
+
                 world.setSystem(new ShootingSystem(world));
 
                 return this;
@@ -49,9 +54,19 @@ var TDDTowerDefense =
 
             /* ----------------------------------------- */
 
-            launch: function () {
+            play: function () {
 
                 world.start();
+
+                return this;
+
+            },
+
+            /* ----------------------------------------- */
+
+            pause: function () {
+
+                world.pause();
 
                 return this;
 
@@ -65,4 +80,4 @@ var TDDTowerDefense =
 
 )();
 
-TDDTowerDefense.initialize().launch();
+TDDTowerDefense.initialize().play();

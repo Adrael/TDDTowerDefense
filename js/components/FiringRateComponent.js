@@ -13,6 +13,14 @@ function FiringRateComponent(delay) {
 
 };
 
+FiringRateComponent.prototype.setActualDelay = function (delay) {
+
+    this.currentDelay = delay;
+
+    return this;
+
+};
+
 FiringRateComponent.prototype.setDelay = function (delay) {
 
     this.delay = delay;

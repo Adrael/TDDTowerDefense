@@ -9,7 +9,6 @@ function VelocityComponent(a, b) {
     var x = a;
     var y = b;
 
-//    console.log('velocityComp', a, b)
 
     if(a instanceof PositionComponent && b instanceof PositionComponent) {
 
